@@ -6,6 +6,8 @@
 	<test name="SkilloTests">
 		<classes>
 			<class name="tests.RegisterTest"/>
+			<class name="tests.LoginTest"/>
+			<class name="tests.LoginErrorTest"/>
 		</classes>
 	</test>
 </suite>
