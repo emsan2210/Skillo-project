@@ -9,6 +9,7 @@
 			<class name="tests.LoginTest"/>
 			<class name="tests.LoginErrorTest"/>
 			<class name="tests.CreatePostTest"/>
+			<class name="tests.CommentPostTest"/>
 		</classes>
 	</test>
 </suite>
