@@ -1,7 +1,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="SkilloTestSuite" parallel="false">
+	<listeners>
+		<listener class-name="listeners.TestListener"/>
+	</listeners>
 	<test name="SkilloTests">
 		<classes>
+			<class name="tests.RegisterTest"/>
 		</classes>
 	</test>
 </suite>
