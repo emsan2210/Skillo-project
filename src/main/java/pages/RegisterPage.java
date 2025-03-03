@@ -32,16 +32,13 @@ public class RegisterPage extends BasePage {
     }
 
     public void register(String username, String email, String birthDate, String password, String confirmPassword, String publicInfo) {
-        usernameField.sendKeys(username);
-        emailField.sendKeys(email)
-        ;
-        birthDateField.sendKeys(birthDate);
-        passwordField.sendKeys(password);
-        confirmPasswordField.sendKeys(confirmPassword);
-        publicInfoField.sendKeys(publicInfo);
-        registerButton.click();
+        typeText(usernameField, username);
+        typeText(emailField, email);
+        typeText(birthDateField, birthDate);
+        typeText(passwordField, password);
+        typeText(confirmPasswordField, confirmPassword);
+        typeText(publicInfoField, publicInfo);
 
+        click(registerButton);
     }
-
-
 }
