@@ -46,8 +46,8 @@ public class CommentPostTest extends BaseTest {
 
         // Step 9: Add a comment
         String commentText = "This is an automated test comment!";
-        commentField.sendKeys(commentText );
-        commentField.sendKeys( Keys.ENTER);
+        commentField.sendKeys(commentText);
+        commentField.sendKeys(Keys.ENTER);
 
         // Step 11: Verify the comment was added (wait for the comment to appear)
         WebElement addedComment = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'This is an automated test comment!')]")));
