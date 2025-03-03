@@ -9,19 +9,19 @@ import java.io.File;
 
 public class CreatePostPage extends BasePage {
 
-    @FindBy(css = "input[formcontrolname='coverUrl'][type='file']") // File input field
+    @FindBy(css = "input[formcontrolname='coverUrl'][type='file']")
     private WebElement uploadImageField;
 
-    @FindBy(css = "[formcontrolname='caption']") // Caption input field
+    @FindBy(css = "[formcontrolname='caption']")
     private WebElement captionField;
 
-    @FindBy(css = "input[formcontrolname='postStatus'][type='checkbox']") // Checkbox for public/private
+    @FindBy(css = "input[formcontrolname='postStatus'][type='checkbox']")
     private WebElement publicPrivateCheckbox;
 
-    @FindBy(css = "button[type='submit']") // Submit button to create the post
+    @FindBy(css = "button[type='submit']")
     private WebElement createPostButton;
 
-    @FindBy(css = ".image-preview") // Optional: Preview image displayed after upload
+    @FindBy(css = ".image-preview")
     private WebElement imagePreview;
 
     public CreatePostPage(WebDriver driver) {
@@ -29,7 +29,7 @@ public class CreatePostPage extends BasePage {
     }
 
     /**
-     * Uploads an image and validates the file exists.
+     * Uploads an image using the file input field.
      *
      * @param imagePath The absolute path of the image file to upload.
      */
@@ -40,29 +40,27 @@ public class CreatePostPage extends BasePage {
         }
 
         try {
-            // Attempt to upload the image
-            uploadImageField.sendKeys(imagePath);
-            System.out.println("File uploaded successfully: " + imagePath);
+            // Use BasePage's wait utilities to ensure field is ready
+            setFilePath(uploadImageField, imagePath);
         } catch (Exception e) {
-            // Fallback to JavaScript if standard upload fails
+            // Use JavaScript as a fallback
             System.out.println("Standard file upload failed. Attempting JavaScript upload.");
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("arguments[0].style.display='block';", uploadImageField);
-            uploadImageField.sendKeys(imagePath);
+            setFilePath(uploadImageField, imagePath);
         }
     }
 
     /**
      * Toggles the public/private status of the post.
      *
-     * @param isPublic If true, sets the post to public (checked). If false, sets it to private (unchecked).
+     * @param isPublic If true, sets the post to public. If false, sets it to private.
      */
     private void togglePublicPrivate(boolean isPublic) {
         boolean isCurrentlyChecked = publicPrivateCheckbox.isSelected();
-        if (isPublic && !isCurrentlyChecked) {
-            publicPrivateCheckbox.click(); // Check the box for public
-        } else if (!isPublic && isCurrentlyChecked) {
-            publicPrivateCheckbox.click(); // Uncheck the box for private
+
+        if (isPublic != isCurrentlyChecked) {
+            click(publicPrivateCheckbox);
         }
     }
 
@@ -70,7 +68,9 @@ public class CreatePostPage extends BasePage {
      * Verifies if the image is uploaded by checking the preview.
      */
     private void verifyImageUploaded() {
-        if (imagePreview != null && !imagePreview.isDisplayed()) {
+        if (isElementVisible(imagePreview)) {
+            System.out.println("Image uploaded successfully.");
+        } else {
             throw new RuntimeException("Image upload failed: Preview is not visible.");
         }
     }
@@ -83,19 +83,10 @@ public class CreatePostPage extends BasePage {
      * @param isPublic  True if the post should be public, false otherwise.
      */
     public void createPost(String imagePath, String caption, boolean isPublic) {
-        // Upload image
         uploadImage(imagePath);
-
-        // Optionally, verify the image upload (if preview exists in your application)
         verifyImageUploaded();
-
-        // Enter caption
-        captionField.sendKeys(caption);
-
-        // Set privacy toggle
+        typeText(captionField, caption);
         togglePublicPrivate(isPublic);
-
-        // Submit the form
-        createPostButton.click();
+        click(createPostButton);
     }
 }

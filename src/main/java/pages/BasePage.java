@@ -28,6 +28,10 @@ public abstract class BasePage {
         element.sendKeys(text);
     }
 
+    protected void setFilePath(WebElement element, String filePath) {
+        element.sendKeys(filePath);
+    }
+
     protected String getText(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
         return element.getText();
@@ -39,10 +43,6 @@ public abstract class BasePage {
         } catch (Exception e) {
             return false;
         }
-    }
-
-    protected void waitForElementToBeClickable(WebElement element) {
-        wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 }
 
