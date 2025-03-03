@@ -1,11 +1,11 @@
-## Description:
+# Description:
 
 This is an automation test for a web application for managing posts.\
 The project uses Selenium, TestNG, Java and Maven for automated UI tests.
 
-## Dependencies:
+# Dependencies:
 
-#### The project uses the following dependencies:
+### The project uses the following dependencies:
 
 - Java - programming language
 - Selenium - library for automated web testing
@@ -16,7 +16,7 @@ All Maven dependencies can be found in the pom.xml
 
 ## Installation:
 
-#### To get the project running, follow these steps:
+### To get the project running, follow these steps:
 
 1. Clone the repository:
 
@@ -32,7 +32,7 @@ All Maven dependencies can be found in the pom.xml
 
    mvn test
 
-If you're using an IDE like IntelliJ IDEA proceed with the following steps:
+### If you're using an IDE like IntelliJ IDEA proceed with the following steps:
 
 - from the git menu clone the project
 - New project from VCS - > https://github.com/emsan2210/Skillo-project
@@ -42,7 +42,7 @@ on each run reports and screenshots folders are created if they are not existing
 on error screenshot is added in the screenshots folder\
 after all tests finish, reports are added in the reports folder
 
-## List of test cases:
+# List of test cases:
 
 - Register User Test - ensures user can register
 - Login User Test - ensures user can login
@@ -51,7 +51,7 @@ after all tests finish, reports are added in the reports folder
 - Comment Post Test - ensures logged user can comment post
 - Delete Post Test - ensures logged user can delete own post
 
-## Contacts:
+# Contacts:
 
 - Email: [Emil Todorov](mailto:emo2210@abv.bg)
 - Project link: [Skillo-project](https://github.com/emsan2210/Skillo-project)
